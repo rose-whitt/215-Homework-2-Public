@@ -1,0 +1,63 @@
+This is the justification for my tests, enjoy!
+
+-------
+
+PyDictObjTest
+    OBJECTS
+        HOMO
+        - PyDictObj<PyFloatObj, PyFloatObj>
+        - PyDictObj<PyIntObj, PyIntObj>
+        - PyDictObj<PyBoolObj, PyBoolObj>
+        HETERO
+        - PyDictObj<PyFloatObj, PyIntObj>
+        - PyDictObj<PyIntObj, PyFloatObj>
+        - PyDictObj<PyBoolObj, PyFloatObj>
+        - PyDictObj<PyBoolObj, PyIntObj>
+        - PyDictObj<PyFloatObj, PyBoolObj>
+        - PyDictObj<PyIntObj, PyBoolObj>
+
+PyListObjTest
+    OBJECTS
+        - PyListObj<PyBoolObj>
+        - PyListObj<PyFloatObj>
+        - PyListObj<PyIntObj>
+
+        - PyListObj<PyListObj<PyIntObj>>
+    TESTS
+        - empty
+        - duplicates
+        - nested
+
+PySetObjTest
+    OBJECTS
+        - PySetObj<PyIntObj>
+        - PySetObj<PyFloatObj>
+        - PySetObj<PyBoolObj>
+
+PyStringObjTest
+    OBJECTS
+        - non-empty
+        - empty
+
+PyTupleObjTest
+    OBJECTS
+        - PyTupleObj<PyIntObj>
+        - PyTupleObj<PyFloatObj>
+        - PyTupleObj<PyBoolObj>
+
+MIXED CASES
+    OBJECTS
+        - PyTupleObj<PyStringObj>
+        - PySetObj<PyStringObj>
+        - PyListObj<PyStringObj>
+        - PyDictObj<PyStringObj, PyStringObj>
+        - PyDictObj<PyStringObj, PyIntObj>
+        - PyDictObj<PyFloatObj, PyStringObj>
+        - PyDictObj<PyStringObj, PyBoolObj>
+
+        COMPOUND TYPES
+            - PyListObj<PyTupleObj<PyIntObj>>
+
+    COMPARE
+        - PyTupleObj<PyIntObj> equals PyListObj<PyIntObj>?
+

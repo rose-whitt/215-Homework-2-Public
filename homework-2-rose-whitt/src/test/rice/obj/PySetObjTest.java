@@ -1,0 +1,262 @@
+//package test.rice.obj;
+//
+//import main.rice.obj.PyFloatObj;
+//import main.rice.obj.PyIntObj;
+//import main.rice.obj.PyListObj;
+//import main.rice.obj.PySetObj;
+//import org.junit.jupiter.api.MethodOrderer;
+//import org.junit.jupiter.api.*;
+//
+//import java.util.*;
+//
+//import static org.junit.jupiter.api.Assertions.assertEquals;
+//@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+//public class PySetObjTest {
+//    /**
+//     * Two identical non-empty PySetObjs containing <PyIntObj>.
+//     */
+//    private static PySetObj<PyIntObj> nonEmptySet;
+//    private static PySetObj<PyIntObj> nonEmptySet2;
+//
+//    /**
+//     * An empty PySetObj containing <PyFloatObj>
+//     */
+//    private static PySetObj<PyFloatObj> emptySet;
+//
+//    @BeforeAll
+//    static void setUp() {
+//        List<PyIntObj> nonEmptySetVal = Arrays.asList(new PyIntObj(1), new PyIntObj(2), new PyIntObj(3), new PyIntObj(4));
+//        List<PyIntObj> nonEmptySetVal2 = Arrays.asList(new PyIntObj(1), new PyIntObj(2), new PyIntObj(3), new PyIntObj(4));
+//
+//        Set<PyIntObj> nonEmptySetValSet = new HashSet<>(nonEmptySetVal);
+//        Set<PyIntObj> nonEmptySetValSet2 = new HashSet<>(nonEmptySetVal2);
+//
+//        nonEmptySet = new PySetObj<>(nonEmptySetValSet);
+//        nonEmptySet2 = new PySetObj<>(nonEmptySetValSet2);
+//
+//        Set<PyFloatObj> emptySetVal = new HashSet<PyFloatObj>();
+//        emptySet = new PySetObj<>(emptySetVal);
+//    }
+//
+//    /**
+//     * test getValue on an empty set.
+//     */
+//    @Test
+//    void emptyGetValue() {
+//        assertEquals(Collections.<PyFloatObj>emptySet(), emptySet.getValue());
+//    }
+//
+//    /**
+//     * test getValue on an empty set.
+//     */
+//    @Test
+//    void emptyToString() {
+//        assertEquals("{}", emptySet.toString());
+//    }
+//
+//    /**
+//     * Test toString() on a PySetObj of type PyIntObj.
+//     */
+//    @Test
+//    void testToString() {
+//        assertEquals("{1, 2, 3, 4}", nonEmptySet.toString());
+//    }
+//
+//    /**
+//     * Test that two non-empty identical sets have the same value.
+//     */
+//    @Test
+//    void testGetValueNonEmpty() {
+//        assertEquals(nonEmptySet.getValue(), nonEmptySet2.getValue());
+//    }
+//
+//    /**
+//     * Test that two non-empty identical sets have the same hashcode.
+//     */
+//    @Test
+//    void testHashNonEmpty() {
+//        assertEquals(nonEmptySet.hashCode(), nonEmptySet2.hashCode());
+//    }
+//
+//
+//
+//}
+package test.rice.obj;
+
+import main.rice.obj.*;
+import org.junit.jupiter.api.*;
+
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Test cases for the PySetObj class.
+ */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+class PySetObjTest extends AIterablePyObjTest {
+
+    /**
+     * An empty PySetObj designed to contain floats.
+     */
+    private static PySetObj<PyFloatObj> emptyFloatSet;
+
+    /**
+     * An empty PySetObj designed to contain sets of ints.
+     */
+    private static PySetObj<PySetObj<PyIntObj>> emptyNestedSet;
+
+    /**
+     * Two identical non-empty PySetObjs containing floats.
+     */
+    private static PySetObj<PyFloatObj> nonEmptyFloatSet;
+    private static PySetObj<PyFloatObj> nonEmptyFloatSet2;
+
+    /**
+     * A non-empty PySetObj containing floats whose values are different from the other
+     * three nonEmptyFloatSets.
+     */
+    private static PySetObj<PyFloatObj> nonEmptyFloatSet3;
+
+    /**
+     * A non-empty PySetObj containing ints.
+     */
+    private static PySetObj<PyIntObj> nonEmptyIntSet;
+
+    /**
+     * A PySetObj containing a subset of the elements in nonEmptyIntList.
+     */
+    private static PySetObj<PyIntObj> nonEmptyIntSubset;
+
+    /**
+     * Sets up all static fields for use in the test cases.
+     */
+    @BeforeAll
+    static void setUp() {
+        AIterablePyObjTest.setUp();
+
+        // Create two empty sets of different types
+        emptyFloatSet = new PySetObj<>(new HashSet<>(emptyFloatVal));
+        emptyNestedSet = new PySetObj<>(Collections.emptySet());
+
+        // Create two identical non-empty sets of floats, and a third distinct non-empty
+        // set of floats
+        nonEmptyFloatSet = new PySetObj<>(new HashSet<>(nonEmptyFloatVal));
+        Set<PyFloatObj> innerSet2 = Set.of(new PyFloatObj(6.0), new PyFloatObj(3.1), new PyFloatObj(2.3));
+        nonEmptyFloatSet2 = new PySetObj<>(innerSet2);
+        nonEmptyFloatSet3 = new PySetObj<>(new HashSet<>(nonEmptyFloatVal3));
+
+        // Create two non-empty sets of ints, one of which is a subset of the other
+        nonEmptyIntSet = new PySetObj<>(new HashSet<>(nonEmptyIntVal));
+        nonEmptyIntSubset = new PySetObj<>(new HashSet<>(nonEmptyIntSubsetVal));
+    }
+
+    /**
+     * Tests getValue() on a set containing multiple elements.
+     */
+    @Test
+    @Tag("0.25")
+    @Order(0)
+    void testGetValue() {
+        assertEquals(new HashSet<>(nonEmptyFloatVal),
+                nonEmptyFloatSet.getValue());
+    }
+
+    /**
+     * Tests toString() on an empty set.
+     */
+    @Test
+    @Tag("0.5")
+    @Order(1)
+    void testToStringEmpty() {
+        assertEquals("set()", emptyFloatSet.toString());
+    }
+
+    /**
+     * Tests toString() on a set containing a single element.
+     */
+    @Test
+    @Tag("0.5")
+    @Order(2)
+    void testToStringSingle() {
+        assertEquals(nonEmptyIntSubset.toString(), "{1}");
+    }
+
+    /**
+     * Tests toString() on a set containing multiple elements.
+     */
+    @Test
+    @Tag("0.5")
+    @Order(3)
+    void testToStringMultiple() {
+        // Since sets are unordered, there are multiple valid (equivalent) options for
+        // toString()
+        String[] options = new String[]{"{2.3, 3.1, 6.0}", "{2.3, 6.0, 3.1}",
+                "{3.1, 2.3, 6.0}", "{3.1, 6.0, 2.3}", "{6.0, 2.3, 3.1}",
+                "{6.0, 3.1, 2.3}"};
+        assertTrue(Arrays.asList(options).contains(nonEmptyFloatSet.toString()));
+    }
+
+    /**
+     * Tests equals() on two empty sets of different declared types.
+     */
+    @Test
+    @Tag("0.25")
+    @Order(4)
+    void testEqualsEmpty() {
+        assertEquals(emptyFloatSet, emptyNestedSet);
+    }
+
+    /**
+     * Tests equals() on two non-empty sets containing the same elements.
+     */
+    @Test
+    @Tag("0.25")
+    @Order(5)
+    void testEqualsMultipleSameOrder() {
+        assertEquals(nonEmptyFloatSet, nonEmptyFloatSet2);
+    }
+
+    /**
+     * Tests equals() on two sets with different values.
+     */
+    @Test
+    @Tag("0.25")
+    @Order(6)
+    void testNotEqual() {
+        assertNotEquals(nonEmptyFloatSet, nonEmptyFloatSet3);
+    }
+
+    /**
+     * Tests equals() on two sets with different values, where one set is a subset of the
+     * other.
+     */
+    @Test
+    @Tag("0.25")
+    @Order(7)
+    void testNotEqualSubset1() {
+        assertNotEquals(nonEmptyIntSubset, nonEmptyIntSet);
+    }
+
+    /**
+     * Tests equals() on two sets with different values, where one set is a subset of the
+     * other (in the opposite direction of testNotEqualSubset1).
+     */
+    @Test
+    @Tag("0.25")
+    @Order(8)
+    void testNotEqualSubset2() {
+        assertNotEquals(nonEmptyIntSet, nonEmptyIntSubset);
+    }
+
+    /**
+     * Tests that hashCode() returns the same value for two non-empty sets containing the
+     * same elements.
+     */
+    @Test
+    @Tag("0.5")
+    @Order(9)
+    void testHashCode() {
+        assertEquals(nonEmptyFloatSet.hashCode(), nonEmptyFloatSet2.hashCode());
+    }
+}
