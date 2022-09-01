@@ -1,0 +1,170 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PyDictObj</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">main.rice.obj</a>
+</div>
+
+<h1>Coverage Summary for Class: PyDictObj (main.rice.obj)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PyDictObj</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package main.rice.obj;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.util.*;
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;public class PyDictObj&lt;KeyType extends APyObj, ValType extends APyObj&gt; extends APyObj {
+<i class="no-highlight">6</i>&nbsp;    /**
+<i class="no-highlight">7</i>&nbsp;     * The value of this PyDictObj.
+<i class="no-highlight">8</i>&nbsp;     */
+<i class="no-highlight">9</i>&nbsp;    private Map&lt;KeyType, ValType&gt; map;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;    /**
+<i class="no-highlight">12</i>&nbsp;     * Constructor for a PyDictObj; initializes its value to a dict of the input.
+<i class="no-highlight">13</i>&nbsp;     *
+<i class="no-highlight">14</i>&nbsp;     * @param mapParam a Map representing the value of this PyDictObj
+<i class="no-highlight">15</i>&nbsp;     */
+<b class="fc"><i class="no-highlight">16</i>&nbsp;    public PyDictObj(Map&lt;KeyType, ValType&gt; mapParam) {</b>
+<b class="fc"><i class="no-highlight">17</i>&nbsp;        this.map = mapParam;</b>
+<i class="no-highlight">18</i>&nbsp;    }
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;    /**
+<i class="no-highlight">21</i>&nbsp;     * Declared as a Map and return as a Map
+<i class="no-highlight">22</i>&nbsp;     * @return the underlying (Java) representation of this Python object
+<i class="no-highlight">23</i>&nbsp;     */
+<i class="no-highlight">24</i>&nbsp;    @Override
+<i class="no-highlight">25</i>&nbsp;    public Map&lt;KeyType, ValType&gt; getValue() {
+<b class="fc"><i class="no-highlight">26</i>&nbsp;        return this.map;</b>
+<i class="no-highlight">27</i>&nbsp;    }
+<i class="no-highlight">28</i>&nbsp;
+<i class="no-highlight">29</i>&nbsp;    /**
+<i class="no-highlight">30</i>&nbsp;     * Builds and returns a string representation of this object that mirrors the Python
+<i class="no-highlight">31</i>&nbsp;     * string representation.
+<i class="no-highlight">32</i>&nbsp;     *
+<i class="no-highlight">33</i>&nbsp;     * @return a string representation of this object
+<i class="no-highlight">34</i>&nbsp;     */
+<i class="no-highlight">35</i>&nbsp;    @Override
+<i class="no-highlight">36</i>&nbsp;    public String toString() {
+<i class="no-highlight">37</i>&nbsp;        // build a string so we can properly format the dictionary
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        StringBuilder str = new StringBuilder();</b>
+<b class="fc"><i class="no-highlight">39</i>&nbsp;        str.append(&quot;{&quot;);</b>
+<b class="fc"><i class="no-highlight">40</i>&nbsp;        int size = this.getValue().size();</b>
+<i class="no-highlight">41</i>&nbsp;        // counter so we can keep track of how far into the dictionary we are since dictionaries are not ordered
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        int j = 0;</b>
+<i class="no-highlight">43</i>&nbsp;
+<i class="no-highlight">44</i>&nbsp;        // iterate over elements of the dictionary
+<b class="fc"><i class="no-highlight">45</i>&nbsp;        for (Map.Entry&lt;KeyType, ValType&gt; entry : this.getValue().entrySet()) {</b>
+<i class="no-highlight">46</i>&nbsp;            // add the key value pair with the python formatting
+<b class="fc"><i class="no-highlight">47</i>&nbsp;            str.append(entry.getKey());</b>
+<b class="fc"><i class="no-highlight">48</i>&nbsp;            str.append(&quot;: &quot;);</b>
+<b class="fc"><i class="no-highlight">49</i>&nbsp;            str.append(entry.getValue());</b>
+<i class="no-highlight">50</i>&nbsp;
+<i class="no-highlight">51</i>&nbsp;            // we do not want to add a &quot;, &quot; when we are at the end of the dictionary
+<b class="fc"><i class="no-highlight">52</i>&nbsp;            if (j &lt; size - 1) {</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;                str.append(&quot;, &quot;);</b>
+<i class="no-highlight">54</i>&nbsp;            } else {
+<i class="no-highlight">55</i>&nbsp;                // properly format the last key value pair and end the dictionary formatting
+<b class="fc"><i class="no-highlight">56</i>&nbsp;                str.append(&quot;}&quot;);</b>
+<i class="no-highlight">57</i>&nbsp;            }
+<i class="no-highlight">58</i>&nbsp;            // up the counter
+<b class="fc"><i class="no-highlight">59</i>&nbsp;            j++;</b>
+<b class="fc"><i class="no-highlight">60</i>&nbsp;        }</b>
+<i class="no-highlight">61</i>&nbsp;
+<i class="no-highlight">62</i>&nbsp;        // convert the string builder to a string and return
+<b class="fc"><i class="no-highlight">63</i>&nbsp;        return str.toString();</b>
+<i class="no-highlight">64</i>&nbsp;    }
+<i class="no-highlight">65</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-09-29 23:54</div>
+</div>
+</body>
+</html>

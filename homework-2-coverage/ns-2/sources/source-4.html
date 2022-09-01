@@ -1,0 +1,311 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PyCharObjTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">test.rice.obj</a>
+</div>
+
+<h1>Coverage Summary for Class: PyCharObjTest (test.rice.obj)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PyCharObjTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (24/24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package test.rice.obj;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import main.rice.obj.PyCharObj;
+<i class="no-highlight">4</i>&nbsp;import org.junit.jupiter.api.*;
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;import java.util.Random;
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;import static org.junit.jupiter.api.Assertions.assertEquals;
+<i class="no-highlight">9</i>&nbsp;import static org.junit.jupiter.api.Assertions.assertNotEquals;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;/**
+<i class="no-highlight">12</i>&nbsp; * Test cases for the PyCharObj class.
+<i class="no-highlight">13</i>&nbsp; */
+<i class="no-highlight">14</i>&nbsp;@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+<b class="fc"><i class="no-highlight">15</i>&nbsp;class PyCharObjTest {</b>
+<i class="no-highlight">16</i>&nbsp;
+<i class="no-highlight">17</i>&nbsp;    /**
+<i class="no-highlight">18</i>&nbsp;     * Two distinct PyCharObjs representing the Python value &#39;a&#39;.
+<i class="no-highlight">19</i>&nbsp;     */
+<b class="fc"><i class="no-highlight">20</i>&nbsp;    private static PyCharObj lower1 = new PyCharObj(&#39;a&#39;);</b>
+<b class="fc"><i class="no-highlight">21</i>&nbsp;    private static PyCharObj lower2 = new PyCharObj(&#39;a&#39;);</b>
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;    /**
+<i class="no-highlight">24</i>&nbsp;     * A PyCharObj representing the Python value &#39;B&#39;.
+<i class="no-highlight">25</i>&nbsp;     */
+<b class="fc"><i class="no-highlight">26</i>&nbsp;    private static PyCharObj upper = new PyCharObj(&#39;B&#39;);</b>
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    /**
+<i class="no-highlight">29</i>&nbsp;     * Two distinct PyCharObjs representing the Python value &#39;1&#39;.
+<i class="no-highlight">30</i>&nbsp;     */
+<b class="fc"><i class="no-highlight">31</i>&nbsp;    private static PyCharObj num1 = new PyCharObj(&#39;1&#39;);</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;    private static PyCharObj num2 = new PyCharObj(&#39;1&#39;);</b>
+<i class="no-highlight">33</i>&nbsp;
+<i class="no-highlight">34</i>&nbsp;    /**
+<i class="no-highlight">35</i>&nbsp;     * A random integer (between 0 and 256, and a PyCharObj representing the corresponding
+<i class="no-highlight">36</i>&nbsp;     * character.
+<i class="no-highlight">37</i>&nbsp;     */
+<i class="no-highlight">38</i>&nbsp;    private static int randInt;
+<i class="no-highlight">39</i>&nbsp;    private static PyCharObj randVal;
+<i class="no-highlight">40</i>&nbsp;
+<i class="no-highlight">41</i>&nbsp;    /**
+<i class="no-highlight">42</i>&nbsp;     * Ensures that randVal gets initialized to a non-alphanumeric character.
+<i class="no-highlight">43</i>&nbsp;     */
+<i class="no-highlight">44</i>&nbsp;    @BeforeAll
+<i class="no-highlight">45</i>&nbsp;    static void setUp() {
+<b class="fc"><i class="no-highlight">46</i>&nbsp;        String alphanumeric =</b>
+<i class="no-highlight">47</i>&nbsp;            &quot;abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&quot;;
+<i class="no-highlight">48</i>&nbsp;        do {
+<b class="fc"><i class="no-highlight">49</i>&nbsp;            randInt = new Random().nextInt(256);</b>
+<b class="fc"><i class="no-highlight">50</i>&nbsp;            randVal = new PyCharObj((char) randInt);</b>
+<b class="fc"><i class="no-highlight">51</i>&nbsp;        } while (alphanumeric.indexOf(randInt) &gt; -1);</b>
+<i class="no-highlight">52</i>&nbsp;    }
+<i class="no-highlight">53</i>&nbsp;
+<i class="no-highlight">54</i>&nbsp;    /**
+<i class="no-highlight">55</i>&nbsp;     * Tests that getValue() returns the expected result for a PyCharObj representing a
+<i class="no-highlight">56</i>&nbsp;     * lowercase letter.
+<i class="no-highlight">57</i>&nbsp;     */
+<i class="no-highlight">58</i>&nbsp;    @Test
+<i class="no-highlight">59</i>&nbsp;    @Tag(&quot;0.25&quot;)
+<i class="no-highlight">60</i>&nbsp;    @Order(1)
+<i class="no-highlight">61</i>&nbsp;    void testGetValueLower() {
+<b class="fc"><i class="no-highlight">62</i>&nbsp;        assertEquals(&#39;a&#39;, lower1.getValue());</b>
+<i class="no-highlight">63</i>&nbsp;    }
+<i class="no-highlight">64</i>&nbsp;
+<i class="no-highlight">65</i>&nbsp;    /**
+<i class="no-highlight">66</i>&nbsp;     * Tests that getValue() returns the expected result for a PyCharObj representing an
+<i class="no-highlight">67</i>&nbsp;     * uppercase letter.
+<i class="no-highlight">68</i>&nbsp;     */
+<i class="no-highlight">69</i>&nbsp;    @Test
+<i class="no-highlight">70</i>&nbsp;    @Tag(&quot;0.25&quot;)
+<i class="no-highlight">71</i>&nbsp;    @Order(2)
+<i class="no-highlight">72</i>&nbsp;    void testGetValueUpper() {
+<b class="fc"><i class="no-highlight">73</i>&nbsp;        assertEquals(&#39;B&#39;, upper.getValue());</b>
+<i class="no-highlight">74</i>&nbsp;    }
+<i class="no-highlight">75</i>&nbsp;
+<i class="no-highlight">76</i>&nbsp;    /**
+<i class="no-highlight">77</i>&nbsp;     * Tests that getValue() returns the expected result for a PyCharObj representing a
+<i class="no-highlight">78</i>&nbsp;     * numeric character.
+<i class="no-highlight">79</i>&nbsp;     */
+<i class="no-highlight">80</i>&nbsp;    @Test
+<i class="no-highlight">81</i>&nbsp;    @Tag(&quot;0.25&quot;)
+<i class="no-highlight">82</i>&nbsp;    @Order(3)
+<i class="no-highlight">83</i>&nbsp;    void testGetValueNumber() {
+<b class="fc"><i class="no-highlight">84</i>&nbsp;        assertEquals(&#39;1&#39;, num1.getValue());</b>
+<i class="no-highlight">85</i>&nbsp;    }
+<i class="no-highlight">86</i>&nbsp;
+<i class="no-highlight">87</i>&nbsp;    /**
+<i class="no-highlight">88</i>&nbsp;     * Tests that getValue() returns the expected result for a PyCharObj representing a
+<i class="no-highlight">89</i>&nbsp;     * random character.
+<i class="no-highlight">90</i>&nbsp;     */
+<i class="no-highlight">91</i>&nbsp;    @Test
+<i class="no-highlight">92</i>&nbsp;    @Tag(&quot;0.25&quot;)
+<i class="no-highlight">93</i>&nbsp;    @Order(4)
+<i class="no-highlight">94</i>&nbsp;    void testGetValueRandom() {
+<b class="fc"><i class="no-highlight">95</i>&nbsp;        assertEquals((char) randInt, randVal.getValue());</b>
+<i class="no-highlight">96</i>&nbsp;    }
+<i class="no-highlight">97</i>&nbsp;
+<i class="no-highlight">98</i>&nbsp;    /**
+<i class="no-highlight">99</i>&nbsp;     * Tests that toString() returns the expected result for a PyCharObj representing a
+<i class="no-highlight">100</i>&nbsp;     * lowercase letter.
+<i class="no-highlight">101</i>&nbsp;     */
+<i class="no-highlight">102</i>&nbsp;    @Test
+<i class="no-highlight">103</i>&nbsp;    @Tag(&quot;0.25&quot;)
+<i class="no-highlight">104</i>&nbsp;    @Order(5)
+<i class="no-highlight">105</i>&nbsp;    void testToStringLower() {
+<b class="fc"><i class="no-highlight">106</i>&nbsp;        assertEquals(&quot;&#39;a&#39;&quot;, lower1.toString());</b>
+<i class="no-highlight">107</i>&nbsp;    }
+<i class="no-highlight">108</i>&nbsp;
+<i class="no-highlight">109</i>&nbsp;    /**
+<i class="no-highlight">110</i>&nbsp;     * Tests that toString() returns the expected result for a PyCharObj representing an
+<i class="no-highlight">111</i>&nbsp;     * uppercase letter.
+<i class="no-highlight">112</i>&nbsp;     */
+<i class="no-highlight">113</i>&nbsp;    @Test
+<i class="no-highlight">114</i>&nbsp;    @Tag(&quot;0.25&quot;)
+<i class="no-highlight">115</i>&nbsp;    @Order(6)
+<i class="no-highlight">116</i>&nbsp;    void testToStringUpper() {
+<b class="fc"><i class="no-highlight">117</i>&nbsp;        assertEquals(&quot;&#39;B&#39;&quot;, upper.toString());</b>
+<i class="no-highlight">118</i>&nbsp;    }
+<i class="no-highlight">119</i>&nbsp;
+<i class="no-highlight">120</i>&nbsp;    /**
+<i class="no-highlight">121</i>&nbsp;     * Tests that toString() returns the expected result for a PyCharObj representing a
+<i class="no-highlight">122</i>&nbsp;     * numeric character.
+<i class="no-highlight">123</i>&nbsp;     */
+<i class="no-highlight">124</i>&nbsp;    @Test
+<i class="no-highlight">125</i>&nbsp;    @Tag(&quot;0.25&quot;)
+<i class="no-highlight">126</i>&nbsp;    @Order(7)
+<i class="no-highlight">127</i>&nbsp;    void testToStringNumber() {
+<b class="fc"><i class="no-highlight">128</i>&nbsp;        assertEquals(&quot;&#39;1&#39;&quot;, num1.toString());</b>
+<i class="no-highlight">129</i>&nbsp;    }
+<i class="no-highlight">130</i>&nbsp;
+<i class="no-highlight">131</i>&nbsp;    /**
+<i class="no-highlight">132</i>&nbsp;     * Tests that toString() returns the expected result for a PyCharObj representing a
+<i class="no-highlight">133</i>&nbsp;     * random character.
+<i class="no-highlight">134</i>&nbsp;     */
+<i class="no-highlight">135</i>&nbsp;    @Test
+<i class="no-highlight">136</i>&nbsp;    @Tag(&quot;0.25&quot;)
+<i class="no-highlight">137</i>&nbsp;    @Order(8)
+<i class="no-highlight">138</i>&nbsp;    void testToStringRandom() {
+<b class="fc"><i class="no-highlight">139</i>&nbsp;        assertEquals(&quot;&#39;&quot; + (char) randInt + &quot;&#39;&quot;, randVal.toString());</b>
+<i class="no-highlight">140</i>&nbsp;    }
+<i class="no-highlight">141</i>&nbsp;
+<i class="no-highlight">142</i>&nbsp;    /**
+<i class="no-highlight">143</i>&nbsp;     * Tests that two distinct PyCharObjs with the same value (&#39;a&#39;) are considered
+<i class="no-highlight">144</i>&nbsp;     * equivalent by equals().
+<i class="no-highlight">145</i>&nbsp;     */
+<i class="no-highlight">146</i>&nbsp;    @Test
+<i class="no-highlight">147</i>&nbsp;    @Tag(&quot;1.0&quot;)
+<i class="no-highlight">148</i>&nbsp;    @Order(9)
+<i class="no-highlight">149</i>&nbsp;    void testEqualsSimple() {
+<b class="fc"><i class="no-highlight">150</i>&nbsp;        assertEquals(lower1, lower2);</b>
+<i class="no-highlight">151</i>&nbsp;    }
+<i class="no-highlight">152</i>&nbsp;
+<i class="no-highlight">153</i>&nbsp;    /**
+<i class="no-highlight">154</i>&nbsp;     * Tests that two distinct PyCharObjs with different values are not considered
+<i class="no-highlight">155</i>&nbsp;     * equivalent by equals().
+<i class="no-highlight">156</i>&nbsp;     */
+<i class="no-highlight">157</i>&nbsp;    @Test
+<i class="no-highlight">158</i>&nbsp;    @Tag(&quot;0.5&quot;)
+<i class="no-highlight">159</i>&nbsp;    @Order(10)
+<i class="no-highlight">160</i>&nbsp;    void testNotEqual() {
+<b class="fc"><i class="no-highlight">161</i>&nbsp;        assertNotEquals(lower1, upper);</b>
+<i class="no-highlight">162</i>&nbsp;    }
+<i class="no-highlight">163</i>&nbsp;
+<i class="no-highlight">164</i>&nbsp;    /**
+<i class="no-highlight">165</i>&nbsp;     * Tests that a PyCharObj is not considered to be equivalent to a non-APyObj.
+<i class="no-highlight">166</i>&nbsp;     */
+<i class="no-highlight">167</i>&nbsp;    @Test
+<i class="no-highlight">168</i>&nbsp;    @Tag(&quot;1.0&quot;)
+<i class="no-highlight">169</i>&nbsp;    @Order(11)
+<i class="no-highlight">170</i>&nbsp;    void testNotEqualNonAPyObj() {
+<b class="fc"><i class="no-highlight">171</i>&nbsp;        assertNotEquals(lower1, &#39;a&#39;);</b>
+<i class="no-highlight">172</i>&nbsp;    }
+<i class="no-highlight">173</i>&nbsp;
+<i class="no-highlight">174</i>&nbsp;    /**
+<i class="no-highlight">175</i>&nbsp;     * Tests that two distinct PyCharObjs with the same value (&#39;a&#39;) return the same value
+<i class="no-highlight">176</i>&nbsp;     * for hashCode().
+<i class="no-highlight">177</i>&nbsp;     */
+<i class="no-highlight">178</i>&nbsp;    @Test
+<i class="no-highlight">179</i>&nbsp;    @Tag(&quot;0.5&quot;)
+<i class="no-highlight">180</i>&nbsp;    @Order(12)
+<i class="no-highlight">181</i>&nbsp;    void testHashCodeTrue1() {
+<b class="fc"><i class="no-highlight">182</i>&nbsp;        assertEquals(lower1.hashCode(), lower2.hashCode());</b>
+<i class="no-highlight">183</i>&nbsp;    }
+<i class="no-highlight">184</i>&nbsp;
+<i class="no-highlight">185</i>&nbsp;    /**
+<i class="no-highlight">186</i>&nbsp;     * Tests that two distinct PyCharObjs with the same value (&#39;1&#39;) return the same value
+<i class="no-highlight">187</i>&nbsp;     * for hashCode().
+<i class="no-highlight">188</i>&nbsp;     */
+<i class="no-highlight">189</i>&nbsp;    @Test
+<i class="no-highlight">190</i>&nbsp;    @Tag(&quot;0.5&quot;)
+<i class="no-highlight">191</i>&nbsp;    @Order(13)
+<i class="no-highlight">192</i>&nbsp;    void testHashCodeTrue2() {
+<b class="fc"><i class="no-highlight">193</i>&nbsp;        assertEquals(num1.hashCode(), num2.hashCode());</b>
+<i class="no-highlight">194</i>&nbsp;    }
+<i class="no-highlight">195</i>&nbsp;
+<i class="no-highlight">196</i>&nbsp;    /**
+<i class="no-highlight">197</i>&nbsp;     * Tests that two distinct PyCharObjs with different values return different values
+<i class="no-highlight">198</i>&nbsp;     * for hashCode().
+<i class="no-highlight">199</i>&nbsp;     */
+<i class="no-highlight">200</i>&nbsp;    @Test
+<i class="no-highlight">201</i>&nbsp;    @Tag(&quot;1.0&quot;)
+<i class="no-highlight">202</i>&nbsp;    @Order(14)
+<i class="no-highlight">203</i>&nbsp;    void testHashCodeFalse() {
+<b class="fc"><i class="no-highlight">204</i>&nbsp;        assertNotEquals(lower1.hashCode(), upper.hashCode());</b>
+<i class="no-highlight">205</i>&nbsp;    }
+<i class="no-highlight">206</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-09-29 23:54</div>
+</div>
+</body>
+</html>

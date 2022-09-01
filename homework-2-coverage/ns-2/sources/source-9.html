@@ -1,0 +1,188 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PySetObjTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">test.rice.obj</a>
+</div>
+
+<h1>Coverage Summary for Class: PySetObjTest (test.rice.obj)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PySetObjTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package test.rice.obj;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import main.rice.obj.PyFloatObj;
+<i class="no-highlight">4</i>&nbsp;import main.rice.obj.PyIntObj;
+<i class="no-highlight">5</i>&nbsp;import main.rice.obj.PyListObj;
+<i class="no-highlight">6</i>&nbsp;import main.rice.obj.PySetObj;
+<i class="no-highlight">7</i>&nbsp;import org.junit.jupiter.api.MethodOrderer;
+<i class="no-highlight">8</i>&nbsp;import org.junit.jupiter.api.*;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;import java.util.*;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;import static org.junit.jupiter.api.Assertions.assertEquals;
+<i class="no-highlight">13</i>&nbsp;@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+<b class="fc"><i class="no-highlight">14</i>&nbsp;public class PySetObjTest {</b>
+<i class="no-highlight">15</i>&nbsp;    /**
+<i class="no-highlight">16</i>&nbsp;     * Two identical non-empty PySetObjs containing &lt;PyIntObj&gt;.
+<i class="no-highlight">17</i>&nbsp;     */
+<i class="no-highlight">18</i>&nbsp;    private static PySetObj&lt;PyIntObj&gt; nonEmptySet;
+<i class="no-highlight">19</i>&nbsp;    private static PySetObj&lt;PyIntObj&gt; nonEmptySet2;
+<i class="no-highlight">20</i>&nbsp;
+<i class="no-highlight">21</i>&nbsp;    /**
+<i class="no-highlight">22</i>&nbsp;     * An empty PySetObj containing &lt;PyFloatObj&gt;
+<i class="no-highlight">23</i>&nbsp;     */
+<i class="no-highlight">24</i>&nbsp;    private static PySetObj&lt;PyFloatObj&gt; emptySet;
+<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">26</i>&nbsp;    @BeforeAll
+<i class="no-highlight">27</i>&nbsp;    static void setUp() {
+<b class="fc"><i class="no-highlight">28</i>&nbsp;        List&lt;PyIntObj&gt; nonEmptySetVal = Arrays.asList(new PyIntObj(1), new PyIntObj(2), new PyIntObj(3), new PyIntObj(4));</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;        List&lt;PyIntObj&gt; nonEmptySetVal2 = Arrays.asList(new PyIntObj(1), new PyIntObj(2), new PyIntObj(3), new PyIntObj(4));</b>
+<i class="no-highlight">30</i>&nbsp;
+<b class="fc"><i class="no-highlight">31</i>&nbsp;        Set&lt;PyIntObj&gt; nonEmptySetValSet = new HashSet&lt;&gt;(nonEmptySetVal);</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;        Set&lt;PyIntObj&gt; nonEmptySetValSet2 = new HashSet&lt;&gt;(nonEmptySetVal2);</b>
+<i class="no-highlight">33</i>&nbsp;
+<b class="fc"><i class="no-highlight">34</i>&nbsp;        nonEmptySet = new PySetObj&lt;&gt;(nonEmptySetValSet);</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        nonEmptySet2 = new PySetObj&lt;&gt;(nonEmptySetValSet2);</b>
+<i class="no-highlight">36</i>&nbsp;
+<b class="fc"><i class="no-highlight">37</i>&nbsp;        Set&lt;PyFloatObj&gt; emptySetVal = new HashSet&lt;PyFloatObj&gt;();</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        emptySet = new PySetObj&lt;&gt;(emptySetVal);</b>
+<i class="no-highlight">39</i>&nbsp;    }
+<i class="no-highlight">40</i>&nbsp;
+<i class="no-highlight">41</i>&nbsp;    /**
+<i class="no-highlight">42</i>&nbsp;     * test getValue on an empty set.
+<i class="no-highlight">43</i>&nbsp;     */
+<i class="no-highlight">44</i>&nbsp;    @Test
+<i class="no-highlight">45</i>&nbsp;    void emptyGetValue() {
+<b class="fc"><i class="no-highlight">46</i>&nbsp;        assertEquals(Collections.&lt;PyFloatObj&gt;emptySet(), emptySet.getValue());</b>
+<i class="no-highlight">47</i>&nbsp;    }
+<i class="no-highlight">48</i>&nbsp;
+<i class="no-highlight">49</i>&nbsp;    /**
+<i class="no-highlight">50</i>&nbsp;     * test getValue on an empty set.
+<i class="no-highlight">51</i>&nbsp;     */
+<i class="no-highlight">52</i>&nbsp;    @Test
+<i class="no-highlight">53</i>&nbsp;    void emptyToString() {
+<b class="fc"><i class="no-highlight">54</i>&nbsp;        assertEquals(&quot;{}&quot;, emptySet.toString());</b>
+<i class="no-highlight">55</i>&nbsp;    }
+<i class="no-highlight">56</i>&nbsp;
+<i class="no-highlight">57</i>&nbsp;    /**
+<i class="no-highlight">58</i>&nbsp;     * Test toString() on a PySetObj of type PyIntObj.
+<i class="no-highlight">59</i>&nbsp;     */
+<i class="no-highlight">60</i>&nbsp;    @Test
+<i class="no-highlight">61</i>&nbsp;    void testToString() {
+<b class="fc"><i class="no-highlight">62</i>&nbsp;        assertEquals(&quot;{1, 2, 3, 4}&quot;, nonEmptySet.toString());</b>
+<i class="no-highlight">63</i>&nbsp;    }
+<i class="no-highlight">64</i>&nbsp;
+<i class="no-highlight">65</i>&nbsp;    /**
+<i class="no-highlight">66</i>&nbsp;     * Test that two non-empty identical sets have the same value.
+<i class="no-highlight">67</i>&nbsp;     */
+<i class="no-highlight">68</i>&nbsp;    @Test
+<i class="no-highlight">69</i>&nbsp;    void testGetValueNonEmpty() {
+<b class="fc"><i class="no-highlight">70</i>&nbsp;        assertEquals(nonEmptySet.getValue(), nonEmptySet2.getValue());</b>
+<i class="no-highlight">71</i>&nbsp;    }
+<i class="no-highlight">72</i>&nbsp;
+<i class="no-highlight">73</i>&nbsp;    /**
+<i class="no-highlight">74</i>&nbsp;     * Test that two non-empty identical sets have the same hashcode.
+<i class="no-highlight">75</i>&nbsp;     */
+<i class="no-highlight">76</i>&nbsp;    @Test
+<i class="no-highlight">77</i>&nbsp;    void testHashNonEmpty() {
+<b class="fc"><i class="no-highlight">78</i>&nbsp;        assertEquals(nonEmptySet.hashCode(), nonEmptySet2.hashCode());</b>
+<i class="no-highlight">79</i>&nbsp;    }
+<i class="no-highlight">80</i>&nbsp;
+<i class="no-highlight">81</i>&nbsp;
+<i class="no-highlight">82</i>&nbsp;
+<i class="no-highlight">83</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-09-29 23:54</div>
+</div>
+</body>
+</html>

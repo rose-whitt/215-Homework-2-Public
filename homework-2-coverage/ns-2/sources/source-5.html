@@ -1,0 +1,243 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PyDictObjTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">test.rice.obj</a>
+</div>
+
+<h1>Coverage Summary for Class: PyDictObjTest (test.rice.obj)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PyDictObjTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (35/35)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package test.rice.obj;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import main.rice.obj.*;
+<i class="no-highlight">4</i>&nbsp;import org.junit.jupiter.api.*;
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;import java.util.*;
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;import static org.junit.jupiter.api.Assertions.assertEquals;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;/**
+<i class="no-highlight">11</i>&nbsp; * Test cases for the PyDictObj class.
+<i class="no-highlight">12</i>&nbsp; */
+<i class="no-highlight">13</i>&nbsp;@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+<b class="fc"><i class="no-highlight">14</i>&nbsp;public class PyDictObjTest {</b>
+<i class="no-highlight">15</i>&nbsp;    /**
+<i class="no-highlight">16</i>&nbsp;     * An empty PyDictObj designed to contain &lt;Int, Int&gt;.
+<i class="no-highlight">17</i>&nbsp;     */
+<i class="no-highlight">18</i>&nbsp;    private static PyDictObj&lt;PyIntObj, PyIntObj&gt; emptyDictObj;
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;    /**
+<i class="no-highlight">21</i>&nbsp;     * Two identical non-empty PyDictObjs containing &lt;float, bool&gt;.
+<i class="no-highlight">22</i>&nbsp;     */
+<i class="no-highlight">23</i>&nbsp;    private static PyDictObj&lt;PyFloatObj, PyBoolObj&gt; nonEmptyDictObjLarge;
+<i class="no-highlight">24</i>&nbsp;    private static PyDictObj&lt;PyFloatObj, PyBoolObj&gt; nonEmptyDictObjLarge2;
+<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">26</i>&nbsp;    /**
+<i class="no-highlight">27</i>&nbsp;     * A non-empty compounded PyDictObj containing a boolean key
+<i class="no-highlight">28</i>&nbsp;     * a PyDictObj value, and an int and float nested key value pair
+<i class="no-highlight">29</i>&nbsp;     */
+<i class="no-highlight">30</i>&nbsp;    private static PyDictObj&lt;PyBoolObj, PyDictObj&lt;PyIntObj, PyFloatObj&gt;&gt; compoundNonEmpty;
+<i class="no-highlight">31</i>&nbsp;    private static PyDictObj&lt;PyIntObj, PyFloatObj&gt; compoundNonEmptyInner1;
+<i class="no-highlight">32</i>&nbsp;    private static PyDictObj&lt;PyIntObj, PyFloatObj&gt; compoundNonEmptyInner2;
+<i class="no-highlight">33</i>&nbsp;
+<i class="no-highlight">34</i>&nbsp;    @BeforeAll
+<i class="no-highlight">35</i>&nbsp;    static void setUp() {
+<i class="no-highlight">36</i>&nbsp;        // Create two identical non-empty dictionaries of &lt;float, boolean&gt;
+<b class="fc"><i class="no-highlight">37</i>&nbsp;        Map&lt;PyFloatObj, PyBoolObj&gt; nonEmptyFloatBoolVal = new HashMap&lt;PyFloatObj, PyBoolObj&gt;();</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        Map&lt;PyFloatObj, PyBoolObj&gt; nonEmptyFloatBoolVal2 = new HashMap&lt;PyFloatObj, PyBoolObj&gt;();</b>
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;        // we want to create a large dictionary of 100 values that basically has a random
+<i class="no-highlight">41</i>&nbsp;        // make random object
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        Random rd = new Random();</b>
+<i class="no-highlight">43</i>&nbsp;        boolean bool;
+<i class="no-highlight">44</i>&nbsp;
+<i class="no-highlight">45</i>&nbsp;        // key and value pair
+<b class="fc"><i class="no-highlight">46</i>&nbsp;        for (int i = 0; i &lt; 100; i++) {</b>
+<b class="fc"><i class="no-highlight">47</i>&nbsp;            if (i % 3 == 0) {</b>
+<b class="fc"><i class="no-highlight">48</i>&nbsp;                bool = true;</b>
+<i class="no-highlight">49</i>&nbsp;            } else {
+<b class="fc"><i class="no-highlight">50</i>&nbsp;                bool = false;</b>
+<i class="no-highlight">51</i>&nbsp;            }
+<b class="fc"><i class="no-highlight">52</i>&nbsp;            double rando = rd.nextDouble() * i;</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;            nonEmptyFloatBoolVal.put(new PyFloatObj(rando), new PyBoolObj(bool));</b>
+<b class="fc"><i class="no-highlight">54</i>&nbsp;            nonEmptyFloatBoolVal2.put(new PyFloatObj(rando), new PyBoolObj(bool));</b>
+<i class="no-highlight">55</i>&nbsp;        }
+<i class="no-highlight">56</i>&nbsp;
+<i class="no-highlight">57</i>&nbsp;        // Create an empty PyDictObj
+<b class="fc"><i class="no-highlight">58</i>&nbsp;        Map&lt;PyIntObj, PyIntObj&gt; emptyIntVal = new HashMap&lt;PyIntObj, PyIntObj&gt;();</b>
+<b class="fc"><i class="no-highlight">59</i>&nbsp;        emptyDictObj = new PyDictObj&lt;PyIntObj, PyIntObj&gt;(emptyIntVal);</b>
+<i class="no-highlight">60</i>&nbsp;
+<i class="no-highlight">61</i>&nbsp;        // Create two identical non-empty PyDictObjs of floats and booleans
+<b class="fc"><i class="no-highlight">62</i>&nbsp;        nonEmptyDictObjLarge = new PyDictObj&lt;&gt;(nonEmptyFloatBoolVal);</b>
+<b class="fc"><i class="no-highlight">63</i>&nbsp;        nonEmptyDictObjLarge2 = new PyDictObj&lt;&gt;(nonEmptyFloatBoolVal2);</b>
+<i class="no-highlight">64</i>&nbsp;
+<i class="no-highlight">65</i>&nbsp;        // create inner mappings for compound object
+<b class="fc"><i class="no-highlight">66</i>&nbsp;        Map&lt;PyIntObj, PyFloatObj&gt; compoundNonEmptyValInner1 = new HashMap&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">67</i>&nbsp;        Map&lt;PyIntObj, PyFloatObj&gt; compoundNonEmptyValInner2 = new HashMap&lt;&gt;();</b>
+<i class="no-highlight">68</i>&nbsp;
+<i class="no-highlight">69</i>&nbsp;        // assign key value pairs to inner mappings for compound object
+<b class="fc"><i class="no-highlight">70</i>&nbsp;        compoundNonEmptyValInner1.put(new PyIntObj(2), new PyFloatObj(435.225));</b>
+<b class="fc"><i class="no-highlight">71</i>&nbsp;        compoundNonEmptyValInner1.put(new PyIntObj(29784), new PyFloatObj(-3247.4));</b>
+<b class="fc"><i class="no-highlight">72</i>&nbsp;        compoundNonEmptyValInner1.put(new PyIntObj(88), new PyFloatObj(0.7));</b>
+<i class="no-highlight">73</i>&nbsp;
+<b class="fc"><i class="no-highlight">74</i>&nbsp;        compoundNonEmptyValInner2.put(new PyIntObj(9), new PyFloatObj(-783.3));</b>
+<b class="fc"><i class="no-highlight">75</i>&nbsp;        compoundNonEmptyValInner2.put(new PyIntObj(1), new PyFloatObj(1.0));</b>
+<b class="fc"><i class="no-highlight">76</i>&nbsp;        compoundNonEmptyValInner2.put(new PyIntObj(-4), new PyFloatObj(-343.2));</b>
+<b class="fc"><i class="no-highlight">77</i>&nbsp;        compoundNonEmptyValInner2.put(new PyIntObj(38), new PyFloatObj(9.0));</b>
+<i class="no-highlight">78</i>&nbsp;
+<i class="no-highlight">79</i>&nbsp;
+<i class="no-highlight">80</i>&nbsp;        // convert inner mappings PyDictObjs
+<b class="fc"><i class="no-highlight">81</i>&nbsp;        compoundNonEmptyInner1 = new PyDictObj&lt;&gt;(compoundNonEmptyValInner1);</b>
+<b class="fc"><i class="no-highlight">82</i>&nbsp;        compoundNonEmptyInner2 = new PyDictObj&lt;&gt;(compoundNonEmptyValInner2);</b>
+<i class="no-highlight">83</i>&nbsp;
+<i class="no-highlight">84</i>&nbsp;        // create outer mappings for compound object
+<b class="fc"><i class="no-highlight">85</i>&nbsp;        Map&lt;PyBoolObj, PyDictObj&lt;PyIntObj, PyFloatObj&gt;&gt; compoundNonEmptyVal = new HashMap&lt;&gt;();</b>
+<i class="no-highlight">86</i>&nbsp;
+<i class="no-highlight">87</i>&nbsp;        // assign inner mappings to outer mapping values for compound object
+<b class="fc"><i class="no-highlight">88</i>&nbsp;        compoundNonEmptyVal.put(new PyBoolObj(true), compoundNonEmptyInner1);</b>
+<b class="fc"><i class="no-highlight">89</i>&nbsp;        compoundNonEmptyVal.put(new PyBoolObj(false), compoundNonEmptyInner2);</b>
+<i class="no-highlight">90</i>&nbsp;
+<i class="no-highlight">91</i>&nbsp;        // create a non-empty compound PyDict Object
+<b class="fc"><i class="no-highlight">92</i>&nbsp;        compoundNonEmpty = new PyDictObj&lt;PyBoolObj, PyDictObj&lt;PyIntObj, PyFloatObj&gt;&gt;(compoundNonEmptyVal);</b>
+<i class="no-highlight">93</i>&nbsp;    }
+<i class="no-highlight">94</i>&nbsp;
+<i class="no-highlight">95</i>&nbsp;    /**
+<i class="no-highlight">96</i>&nbsp;     * Tests getValue() on a randomized large dictionary.
+<i class="no-highlight">97</i>&nbsp;     */
+<i class="no-highlight">98</i>&nbsp;    @Test
+<i class="no-highlight">99</i>&nbsp;    void nonEmptyDictLargeEqual() {
+<b class="fc"><i class="no-highlight">100</i>&nbsp;        assertEquals(nonEmptyDictObjLarge.getValue(), nonEmptyDictObjLarge2.getValue());</b>
+<i class="no-highlight">101</i>&nbsp;    }
+<i class="no-highlight">102</i>&nbsp;
+<i class="no-highlight">103</i>&nbsp;    /**
+<i class="no-highlight">104</i>&nbsp;     * Tests that hashCode() returns the same value for two large dictionaries containing identical
+<i class="no-highlight">105</i>&nbsp;     * elements.
+<i class="no-highlight">106</i>&nbsp;     */
+<i class="no-highlight">107</i>&nbsp;    @Test
+<i class="no-highlight">108</i>&nbsp;    void nonEmptyDictLargeHash() {
+<b class="fc"><i class="no-highlight">109</i>&nbsp;        assertEquals(nonEmptyDictObjLarge.hashCode(), nonEmptyDictObjLarge2.hashCode());</b>
+<i class="no-highlight">110</i>&nbsp;    }
+<i class="no-highlight">111</i>&nbsp;
+<i class="no-highlight">112</i>&nbsp;    /**
+<i class="no-highlight">113</i>&nbsp;     * Tests getValue() on an empty dictionary.
+<i class="no-highlight">114</i>&nbsp;     */
+<i class="no-highlight">115</i>&nbsp;    @Test
+<i class="no-highlight">116</i>&nbsp;    void emptyDictObjIntEqual() {
+<b class="fc"><i class="no-highlight">117</i>&nbsp;        assertEquals(new PyDictObj&lt;PyIntObj, PyIntObj&gt;(new HashMap&lt;PyIntObj, PyIntObj&gt;()).getValue(), emptyDictObj.getValue());</b>
+<i class="no-highlight">118</i>&nbsp;    }
+<i class="no-highlight">119</i>&nbsp;
+<i class="no-highlight">120</i>&nbsp;    /**
+<i class="no-highlight">121</i>&nbsp;     *  Tests that hashCode() returns the same value for two empty dictionaries.
+<i class="no-highlight">122</i>&nbsp;     */
+<i class="no-highlight">123</i>&nbsp;    @Test
+<i class="no-highlight">124</i>&nbsp;    void emptyDictObjIntHash() {
+<b class="fc"><i class="no-highlight">125</i>&nbsp;        assertEquals(new PyDictObj&lt;PyIntObj, PyIntObj&gt;(new HashMap&lt;PyIntObj, PyIntObj&gt;()).hashCode(), emptyDictObj.hashCode());</b>
+<i class="no-highlight">126</i>&nbsp;    }
+<i class="no-highlight">127</i>&nbsp;
+<i class="no-highlight">128</i>&nbsp;    /**
+<i class="no-highlight">129</i>&nbsp;     * Tests toString() on a compound dictionary.
+<i class="no-highlight">130</i>&nbsp;     */
+<i class="no-highlight">131</i>&nbsp;    @Test
+<i class="no-highlight">132</i>&nbsp;    void nonEmptyCompoundDictToString() {
+<b class="fc"><i class="no-highlight">133</i>&nbsp;        assertEquals(&quot;{False: {1: 1.0, -4: -343.2, 38: 9.0, 9: -783.3}, True: {2: 435.225, 29784: -3247.4, 88: 0.7}}&quot;, compoundNonEmpty.toString());</b>
+<i class="no-highlight">134</i>&nbsp;
+<i class="no-highlight">135</i>&nbsp;    }
+<i class="no-highlight">136</i>&nbsp;
+<i class="no-highlight">137</i>&nbsp;
+<i class="no-highlight">138</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-09-29 23:54</div>
+</div>
+</body>
+</html>

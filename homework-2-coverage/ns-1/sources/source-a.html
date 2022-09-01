@@ -1,0 +1,152 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PyStringObj</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">main.rice.obj</a>
+</div>
+
+<h1>Coverage Summary for Class: PyStringObj (main.rice.obj)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PyStringObj</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (1/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    57.1%
+  </span>
+  <span class="absValue">
+    (4/7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package main.rice.obj;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.util.Collection;
+<i class="no-highlight">4</i>&nbsp;import java.util.List;
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;public class PyStringObj extends AIterablePyObj {
+<i class="no-highlight">7</i>&nbsp;    private String pyString;
+<i class="no-highlight">8</i>&nbsp;    private List&lt;PyCharObj&gt; charList;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;    public PyStringObj(List&lt;PyCharObj&gt; charList) {
+<b class="nc"><i class="no-highlight">11</i>&nbsp;        super(charList);</b>
+<i class="no-highlight">12</i>&nbsp;    }
+<i class="no-highlight">13</i>&nbsp;
+<i class="no-highlight">14</i>&nbsp;    public PyStringObj(String str) {
+<b class="fc"><i class="no-highlight">15</i>&nbsp;        super();</b>
+<i class="no-highlight">16</i>&nbsp;
+<b class="fc"><i class="no-highlight">17</i>&nbsp;        for (int i = 0; i &lt; str.length(); i++) {</b>
+<b class="fc"><i class="no-highlight">18</i>&nbsp;            this.charList.add(new PyCharObj(str.charAt(i)));</b>
+<i class="no-highlight">19</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">20</i>&nbsp;        this.pyString = str;</b>
+<i class="no-highlight">21</i>&nbsp;    }
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;    /**
+<i class="no-highlight">24</i>&nbsp;     * Declare to return a Collection of PyCharObjs but actually return a List of PyCharObjs
+<i class="no-highlight">25</i>&nbsp;     * @return the underlying (Java) representation of this Python object
+<i class="no-highlight">26</i>&nbsp;     */
+<i class="no-highlight">27</i>&nbsp;    @Override
+<i class="no-highlight">28</i>&nbsp;    public Collection&lt;PyCharObj&gt; getValue() {
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        return this.charList;</b>
+<i class="no-highlight">30</i>&nbsp;    }
+<i class="no-highlight">31</i>&nbsp;
+<i class="no-highlight">32</i>&nbsp;    /**
+<i class="no-highlight">33</i>&nbsp;     * Builds and returns a string representation of this object that mirrors the Python
+<i class="no-highlight">34</i>&nbsp;     * string representation.
+<i class="no-highlight">35</i>&nbsp;     *
+<i class="no-highlight">36</i>&nbsp;     * @return a string representation of this object
+<i class="no-highlight">37</i>&nbsp;     */
+<i class="no-highlight">38</i>&nbsp;    @Override
+<i class="no-highlight">39</i>&nbsp;    public String toString() {
+<i class="no-highlight">40</i>&nbsp;//        StringBuilder str = new StringBuilder();
+<i class="no-highlight">41</i>&nbsp;//        for (PyCharObj charEntry : this.charList) {
+<i class="no-highlight">42</i>&nbsp;//            str.append(charEntry.toString());
+<i class="no-highlight">43</i>&nbsp;//        }
+<i class="no-highlight">44</i>&nbsp;//        this.pyString = str.toString();
+<b class="nc"><i class="no-highlight">45</i>&nbsp;        return this.pyString;</b>
+<i class="no-highlight">46</i>&nbsp;    }
+<i class="no-highlight">47</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-09-29 23:54</div>
+</div>
+</body>
+</html>
